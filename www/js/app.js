@@ -1,8 +1,9 @@
 /**
  * powered by kyung tae
+ * third party javascript library => ionic, highcharts-ng added by Kyung tae
  */
 'use strict'
-var app = angular.module('App', ['ionic']);
+var app = angular.module('App', ['ionic','highcharts-ng']);
 app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('tabs', {
@@ -20,10 +21,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         .state('tabs.history', {
-            url: '/history',
+            url: '/history?currency',
             views: {
                 'history-tab': {
-                    templateUrl: 'views/history/history.html'
+                    templateUrl: 'views/history/history.html',
+                    controller: 'HistoryController'
                 }
             }
         })
@@ -31,7 +33,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/currencies',
             views: {
                 'currencies-tab': {
-                    templateUrl: 'views/currencies/currencies.html'
+                    templateUrl: 'views/currencies/currencies.html',
+                    controller: 'CurrenciesController'
+                }
+            }
+        })
+        .state('tabs.detail', {
+            url: '/detail/:currency',
+            views: {
+                'rats-tab': {
+                  templateUrl: 'views/detail/detail.html',
+                  controller: 'DetailController'
                 }
             }
         });
